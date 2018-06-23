@@ -1,6 +1,6 @@
 {
   "name": "@bsonntag/react-video",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A react component that handles video properties and methods by prop.",
   "keywords": [
     "react",
@@ -13,7 +13,7 @@
   "scripts": {
     "bundle": "rm -rf dist && babel src --out-dir dist",
     "bundle:watch": "babel src --out-dir dist --watch",
-    "version": "npm run bundle"
+    "version": "npm run bundle && git add dist"
   },
   "dependencies": {
     "prop-types": "^15.6.2"

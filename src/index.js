@@ -4,38 +4,32 @@ import React, { Component, createRef } from 'react';
 export default class Video extends Component {
 
   static propTypes = {
+    autoPlay: PropTypes.bool,
+    controls: PropTypes.bool,
+    muted: PropTypes.bool,
+    onPause: PropTypes.func,
+    onPlay: PropTypes.func,
     play: PropTypes.bool,
+    src: PropTypes.string,
     srcObject: PropTypes.object,
     volume: PropTypes.number,
   };
 
   ref = createRef();
 
-  play() {
-    this.ref.current.play();
-  }
-
-  setSrcObject(srcObject) {
-    this.ref.current.srcObject = srcObject;
-  }
-
-  setVolume(volume) {
-    this.ref.current.volume = volume;
-  }
-
   componentDidMount() {
     const { play, srcObject, volume } = this.props;
 
     if (srcObject) {
-      this.setSrcObject(srcObject);
+      this.ref.current.srcObject = srcObject;
     }
 
     if (play) {
-      this.play();
+      this.ref.current.play();
     }
 
-    if (volume != null) {
-      this.setVolume(volume);
+    if (Number.isFinite(volume)) {
+      this.ref.current.volume = volume;
     }
   }
 
@@ -43,19 +37,19 @@ export default class Video extends Component {
     const { play, srcObject, volume } = this.props;
 
     if (srcObject !== prevProps.srcObject) {
-      this.setSrcObject(srcObject);
+      this.ref.current.srcObject = srcObject;
     }
 
     if (play && !prevProps.play) {
-      this.play();
+      this.ref.current.play();
     }
 
     if (!play && prevProps.play) {
       this.ref.current.pause();
     }
 
-    if (volume != null && volume !== prevProps.volume) {
-      this.setVolume(volume);
+    if (Number.isFinite(volume) && volume !== prevProps.volume) {
+      this.ref.current.volume = volume;
     }
   }
 

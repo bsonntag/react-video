@@ -14,6 +14,7 @@
     "bundle": "rm -rf dist && babel src --out-dir dist",
     "bundle:watch": "babel src --out-dir dist --watch",
     "lint": "eslint .",
+    "start": "parcel serve --out-dir build --port 9000 example/index.html",
     "version": "npm run bundle && git add dist"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "eslint": "^5.11.1",
     "eslint-config-seegno": "^11.0.1",
+    "parcel": "^1.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

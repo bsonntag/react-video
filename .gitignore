@@ -56,3 +56,7 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Parcel folders
+.cache
+build

@@ -42,21 +42,6 @@ var Video = function (_Component) {
   }
 
   _createClass(Video, [{
-    key: 'play',
-    value: function play() {
-      this.ref.current.play();
-    }
-  }, {
-    key: 'setSrcObject',
-    value: function setSrcObject(srcObject) {
-      this.ref.current.srcObject = srcObject;
-    }
-  }, {
-    key: 'setVolume',
-    value: function setVolume(volume) {
-      this.ref.current.volume = volume;
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _props = this.props,
@@ -66,15 +51,15 @@ var Video = function (_Component) {
 
 
       if (srcObject) {
-        this.setSrcObject(srcObject);
+        this.ref.current.srcObject = srcObject;
       }
 
       if (play) {
-        this.play();
+        this.ref.current.play();
       }
 
-      if (volume != null) {
-        this.setVolume(volume);
+      if (Number.isFinite(volume)) {
+        this.ref.current.volume = volume;
       }
     }
   }, {
@@ -87,19 +72,19 @@ var Video = function (_Component) {
 
 
       if (srcObject !== prevProps.srcObject) {
-        this.setSrcObject(srcObject);
+        this.ref.current.srcObject = srcObject;
       }
 
       if (play && !prevProps.play) {
-        this.play();
+        this.ref.current.play();
       }
 
       if (!play && prevProps.play) {
         this.ref.current.pause();
       }
 
-      if (volume != null && volume !== prevProps.volume) {
-        this.setVolume(volume);
+      if (Number.isFinite(volume) && volume !== prevProps.volume) {
+        this.ref.current.volume = volume;
       }
     }
   }, {
@@ -125,7 +110,13 @@ var Video = function (_Component) {
 }(_react.Component);
 
 Video.propTypes = {
+  autoPlay: _propTypes2.default.bool,
+  controls: _propTypes2.default.bool,
+  muted: _propTypes2.default.bool,
+  onPause: _propTypes2.default.func,
+  onPlay: _propTypes2.default.func,
   play: _propTypes2.default.bool,
+  src: _propTypes2.default.string,
   srcObject: _propTypes2.default.object,
   volume: _propTypes2.default.number
 };
